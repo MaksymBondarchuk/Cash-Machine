@@ -97,6 +97,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -161,6 +163,30 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Home\Card.cs">
+      <DependentUpon>Cash machine model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\CardOperation.cs">
+      <DependentUpon>Cash machine model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\Cash machine model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Cash machine model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\Cash machine model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Cash machine model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\Cash machine model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Cash machine model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\OperationType.cs">
+      <DependentUpon>Cash machine model.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -203,6 +229,17 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Home\Cash machine model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Cash machine model.Context.cs</LastGenOutput>
+      <DependentUpon>Cash machine model.edmx</DependentUpon>
+    </Content>
+    <Content Include="Views\Home\Cash machine model.edmx.sql" />
+    <Content Include="Views\Home\Cash machine model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Cash machine model.cs</LastGenOutput>
+      <DependentUpon>Cash machine model.edmx</DependentUpon>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -220,6 +257,13 @@
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <EntityDeploy Include="Views\Home\Cash machine model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Cash machine model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Views\Home\Cash machine model.edmx.diagram">
+      <DependentUpon>Cash machine model.edmx</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -231,6 +275,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

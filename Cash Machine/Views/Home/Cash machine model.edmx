@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Cash_x0020_machine_x0020_model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Cash_x0020_machine_x0020_modelStoreContainer">
+    <EntitySet Name="CardSet" EntityType="Cash_x0020_machine_x0020_model.Store.CardSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CardOperationSet" EntityType="Cash_x0020_machine_x0020_model.Store.CardOperationSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OperationTypeSet" EntityType="Cash_x0020_machine_x0020_model.Store.OperationTypeSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="CardCardOperation" Association="Cash_x0020_machine_x0020_model.Store.CardCardOperation">
+      <End Role="Card" EntitySet="CardSet" />
+      <End Role="CardOperation" EntitySet="CardOperationSet" />
+    </AssociationSet>
+    <AssociationSet Name="OperationTypeCardOperation" Association="Cash_x0020_machine_x0020_model.Store.OperationTypeCardOperation">
+      <End Role="OperationType" EntitySet="OperationTypeSet" />
+      <End Role="CardOperation" EntitySet="CardOperationSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CardSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IsBlocked" Type="bit" Nullable="false" />
+    <Property Name="Balance" Type="decimal" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CardOperationSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CardId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="OperationTypeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OperationTypeSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="CardCardOperation">
+    <End Role="Card" Type="Cash_x0020_machine_x0020_model.Store.CardSet" Multiplicity="1" />
+    <End Role="CardOperation" Type="Cash_x0020_machine_x0020_model.Store.CardOperationSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Card">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CardOperation">
+        <PropertyRef Name="CardId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OperationTypeCardOperation">
+    <End Role="OperationType" Type="Cash_x0020_machine_x0020_model.Store.OperationTypeSet" Multiplicity="1" />
+    <End Role="CardOperation" Type="Cash_x0020_machine_x0020_model.Store.CardOperationSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OperationType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CardOperation">
+        <PropertyRef Name="OperationTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Cash_x0020_machine_x0020_model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Cash_x0020_machine_x0020_modelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CardSet" EntityType="Cash_x0020_machine_x0020_model.Card" />
+          <EntitySet Name="CardOperationSet" EntityType="Cash_x0020_machine_x0020_model.CardOperation" />
+          <EntitySet Name="OperationTypeSet" EntityType="Cash_x0020_machine_x0020_model.OperationType" />
+          <AssociationSet Name="CardCardOperation" Association="Cash_x0020_machine_x0020_model.CardCardOperation">
+            <End Role="Card" EntitySet="CardSet" />
+            <End Role="CardOperation" EntitySet="CardOperationSet" />
+          </AssociationSet>
+          <AssociationSet Name="OperationTypeCardOperation" Association="Cash_x0020_machine_x0020_model.OperationTypeCardOperation">
+            <End Role="OperationType" EntitySet="OperationTypeSet" />
+            <End Role="CardOperation" EntitySet="CardOperationSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Card">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsBlocked" Type="Boolean" Nullable="false" />
+          <Property Name="Balance" Type="Decimal" Nullable="false" />
+          <NavigationProperty Name="CardOperation" Relationship="Cash_x0020_machine_x0020_model.CardCardOperation" FromRole="Card" ToRole="CardOperation" />
+        </EntityType>
+        <EntityType Name="CardOperation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Card" Relationship="Cash_x0020_machine_x0020_model.CardCardOperation" FromRole="CardOperation" ToRole="Card" />
+          <Property Name="CardId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="OperationType" Relationship="Cash_x0020_machine_x0020_model.OperationTypeCardOperation" FromRole="CardOperation" ToRole="OperationType" />
+          <Property Name="OperationTypeId" Type="Guid" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OperationType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="CardOperation" Relationship="Cash_x0020_machine_x0020_model.OperationTypeCardOperation" FromRole="OperationType" ToRole="CardOperation" />
+          <Property Name="Name" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="CardCardOperation">
+          <End Type="Cash_x0020_machine_x0020_model.Card" Role="Card" Multiplicity="1" />
+          <End Type="Cash_x0020_machine_x0020_model.CardOperation" Role="CardOperation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Card">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CardOperation">
+              <PropertyRef Name="CardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OperationTypeCardOperation">
+          <End Type="Cash_x0020_machine_x0020_model.OperationType" Role="OperationType" Multiplicity="1" />
+          <End Type="Cash_x0020_machine_x0020_model.CardOperation" Role="CardOperation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OperationType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CardOperation">
+              <PropertyRef Name="OperationTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Cash_x0020_machine_x0020_modelStoreContainer" CdmEntityContainer="Cash_x0020_machine_x0020_modelContainer">
+    <EntitySetMapping Name="CardSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Cash_x0020_machine_x0020_model.Card)">
+        <MappingFragment StoreEntitySet="CardSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
+          <ScalarProperty Name="Balance" ColumnName="Balance" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CardOperationSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Cash_x0020_machine_x0020_model.CardOperation)">
+        <MappingFragment StoreEntitySet="CardOperationSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CardId" ColumnName="CardId" />
+          <ScalarProperty Name="OperationTypeId" ColumnName="OperationTypeId" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OperationTypeSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Cash_x0020_machine_x0020_model.OperationType)">
+        <MappingFragment StoreEntitySet="OperationTypeSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
