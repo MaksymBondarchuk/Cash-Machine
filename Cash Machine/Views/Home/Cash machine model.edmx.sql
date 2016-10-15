@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/16/2016 00:04:02
+-- Date Created: 10/16/2016 00:47:43
 -- Generated from EDMX file: C:\Users\bonda\OneDrive\Work\Cash Machine\Cash Machine\Views\Home\Cash machine model.edmx
 -- --------------------------------------------------
 
@@ -17,6 +17,12 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_CardCardOperation]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CardOperationSet] DROP CONSTRAINT [FK_CardCardOperation];
+GO
+IF OBJECT_ID(N'[dbo].[FK_OperationTypeCardOperation]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CardOperationSet] DROP CONSTRAINT [FK_OperationTypeCardOperation];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -40,7 +46,8 @@ GO
 CREATE TABLE [dbo].[CardSet] (
     [Id] uniqueidentifier  NOT NULL,
     [IsBlocked] bit  NOT NULL,
-    [Balance] decimal(18,0)  NOT NULL
+    [Balance] decimal(18,0)  NOT NULL,
+    [Password] nvarchar(max)  NOT NULL
 );
 GO
 

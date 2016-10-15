@@ -25,6 +25,7 @@
     <Property Name="Id" Type="uniqueidentifier" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IsBlocked" Type="bit" Nullable="false" />
     <Property Name="Balance" Type="decimal" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="CardOperationSet">
     <Key>
@@ -91,6 +92,7 @@
           <Property Name="IsBlocked" Type="Boolean" Nullable="false" />
           <Property Name="Balance" Type="Decimal" Nullable="false" />
           <NavigationProperty Name="CardOperation" Relationship="Cash_x0020_machine_x0020_model.CardCardOperation" FromRole="Card" ToRole="CardOperation" />
+          <Property Name="Password" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="CardOperation">
           <Key>
@@ -147,6 +149,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
           <ScalarProperty Name="Balance" ColumnName="Balance" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
