@@ -23,6 +23,7 @@ namespace Cash_Machine.Views.Home
         public System.Guid Id { get; set; }
         public bool IsBlocked { get; set; }
         public decimal Balance { get; set; }
+        public string Password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CardOperation> CardOperation { get; set; }
