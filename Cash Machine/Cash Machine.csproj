@@ -266,6 +266,7 @@
     <Content Include="Models\Cash machine model.edmx.diagram">
       <DependentUpon>Cash machine model.edmx</DependentUpon>
     </Content>
+    <Content Include="Views\Home\Operations.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

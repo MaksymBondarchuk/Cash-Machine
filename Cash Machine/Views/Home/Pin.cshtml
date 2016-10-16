@@ -1,7 +1,27 @@
 ﻿@{
     ViewBag.Title = "Pin";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+@model Cash_Machine.Models.Card
 
-<p>Use this area to provide additional information.</p>
+<div class="row">
+    <div class="keyboard">
+        @using (Html.BeginForm("Pin", "Home", FormMethod.Post))
+            {
+            <form class="keyboard">
+                <div id="screen" class="screen">@Html.PasswordFor(model => model.Password)</div>
+                <input class="key" type="button" value="1" onclick="onKeyboardNumberClick(value)" />
+                <input class="key" type="button" value="2" onclick="onKeyboardNumberClick(value)" />
+                <input class="key" type="button" value="3" onclick="onKeyboardNumberClick(value)" />
+                <input class="key" type="button" value="4" onclick="onKeyboardNumberClick(value)" />
+                <input class="key" type="button" value="5" onclick="onKeyboardNumberClick(value)" />
+                <input class="key" type="button" value="6" onclick="onKeyboardNumberClick(value)" />
+                <input class="key" type="button" value="7" onclick="onKeyboardNumberClick(value)" />
+                <input class="key" type="button" value="8" onclick="onKeyboardNumberClick(value)" />
+                <input class="key" type="button" value="9" onclick="onKeyboardNumberClick(value)" />
+                <input class="key" type="button" value="Clear" onclick="onKeyboardClearClick()" />
+                <input class="key" type="button" value="0" onclick="onKeyboardNumberClick(value)" />
+                <input id="Ok" class="key" type="submit" value="OK" />
+            </form>
+        }
+    </div>
+</div>

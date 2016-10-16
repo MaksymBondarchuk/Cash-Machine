@@ -19,29 +19,52 @@ namespace Cash_Machine.Controllers
         {
             using (var context = new Cash_x0020_machine_x0020_modelContainer())
             {
-                var cards = context.CardSet.Where(c => c.Number == card.Number);
+                var cards = context.CardSet.Where(c => !c.IsBlocked && c.Number == card.Number);
                 if (!cards.Any())
                     return RedirectToAction("Error", new Error
                     {
-                        Description = $"Card with number \"{card.Number}\" doesn't exist",
+                        Description = $"Card with number \"{card.Number}\" doesn't exist or blocked",
                         PreviousUrl = ControllerContext.RouteData.Values["action"].ToString()
                     });
-                return Redirect("/Home/Pin");
-                //return View(cards.First());
+                Session["PinTries"] = -1;
+                return RedirectToAction("Pin", cards.First());
             }
         }
 
-        public ActionResult Pin()
+        public ActionResult Pin(Card card)
         {
-            ViewBag.Message = "Your application description page.";
+            var triesNumber = (int)Session["PinTries"];
+            Session["PinTries"] = triesNumber + 1;
+            if (triesNumber == -1)
+                return View(card);
 
-            return View();
+            using (var context = new Cash_x0020_machine_x0020_modelContainer())
+            {
+                var dbCard = context.CardSet.SingleOrDefault(c => c.Id == card.Id);
+                if (dbCard == null)
+                    return new HttpStatusCodeResult(500);
+
+                if (card.Password == dbCard.Password)
+                    return RedirectToAction("Operations");
+
+                if (triesNumber == 4)
+                {
+                    dbCard.IsBlocked = true;
+                    context.SaveChanges();
+
+                    return RedirectToAction("Error", new Error
+                    {
+                        Description = "You entered wrong PIN for 4 times. Card is blocked",
+                        PreviousUrl = "CardNumber" // Back button will be used as exit button
+                    });
+                }
+                Session["PinTries"] = triesNumber + 1;
+                return View(card);
+            }
         }
 
         public ActionResult Error(Error error)
         {
-            ViewBag.Message = "Your contact page.";
-
             return View(error);
         }
 
@@ -49,6 +72,11 @@ namespace Cash_Machine.Controllers
         {
             Debug.Assert(Request.UrlReferrer != null, "Request.UrlReferrer != null");
             return Redirect(Request.UrlReferrer.ToString());
+        }
+
+        public ActionResult Operations()
+        {
+            return View();
         }
     }
 }
