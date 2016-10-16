@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/16/2016 17:03:46
--- Generated from EDMX file: C:\Users\bonda\OneDrive\Work\Cash Machine\Cash Machine\Views\Home\Cash machine model.edmx
+-- Date Created: 10/17/2016 00:22:15
+-- Generated from EDMX file: C:\Users\bonda\OneDrive\Work\Cash Machine\Cash Machine\Models\Cash machine model.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -58,7 +58,8 @@ CREATE TABLE [dbo].[CardOperationSet] (
     [CardId] uniqueidentifier  NOT NULL,
     [OperationTypeId] uniqueidentifier  NOT NULL,
     [Amount] decimal(18,0)  NOT NULL,
-    [CreatedOn] datetime  NOT NULL
+    [CreatedOn] datetime  NOT NULL,
+    [Balance] decimal(18,0)  NOT NULL
 );
 GO
 

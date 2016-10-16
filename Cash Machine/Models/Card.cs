@@ -19,7 +19,6 @@ namespace Cash_Machine.Models
         {
             this.IsBlocked = false;
             this.Balance = 0.00m;
-            this.Password = "string.Empty";
             this.CardOperation = new HashSet<CardOperation>();
         }
     

@@ -25,6 +25,7 @@ namespace Cash_Machine.Models
         public System.Guid OperationTypeId { get; set; }
         public decimal Amount { get; set; }
         public System.DateTime CreatedOn { get; set; }
+        public decimal Balance { get; set; }
     
         public virtual Card Card { get; set; }
         public virtual OperationType OperationType { get; set; }

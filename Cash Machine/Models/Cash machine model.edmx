@@ -25,7 +25,7 @@
     <Property Name="Id" Type="uniqueidentifier" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IsBlocked" Type="bit" Nullable="false" DefaultValue="false" />
     <Property Name="Balance" Type="decimal" Nullable="false" DefaultValue="0.00" />
-    <Property Name="Password" Type="nvarchar(max)" Nullable="false" DefaultValue="string.Empty" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Number" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="CardOperationSet">
@@ -37,6 +37,7 @@
     <Property Name="OperationTypeId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Amount" Type="decimal" Nullable="false" DefaultValue="0.00" />
     <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="Balance" Type="decimal" Nullable="false" />
   </EntityType>
   <EntityType Name="OperationTypeSet">
     <Key>
@@ -94,7 +95,7 @@
           <Property Name="IsBlocked" Type="Boolean" Nullable="false" DefaultValue="false" />
           <Property Name="Balance" Type="Decimal" Nullable="false" ConcurrencyMode="Fixed" DefaultValue="0.00" />
           <NavigationProperty Name="CardOperation" Relationship="Cash_x0020_machine_x0020_model.CardCardOperation" FromRole="Card" ToRole="CardOperation" />
-          <Property Name="Password" Type="String" Nullable="false" DefaultValue="string.Empty" />
+          <Property Name="Password" Type="String" Nullable="false" />
           <Property Name="Number" Type="String" Nullable="true" />
         </EntityType>
         <EntityType Name="CardOperation">
@@ -108,6 +109,7 @@
           <Property Name="OperationTypeId" Type="Guid" Nullable="false" />
           <Property Name="Amount" Type="Decimal" Nullable="false" ConcurrencyMode="Fixed" DefaultValue="0.00" />
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" />
+          <Property Name="Balance" Type="Decimal" Nullable="false" />
         </EntityType>
         <EntityType Name="OperationType">
           <Key>
@@ -166,6 +168,7 @@
           <ScalarProperty Name="OperationTypeId" ColumnName="OperationTypeId" />
           <ScalarProperty Name="Amount" ColumnName="Amount" />
           <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Balance" ColumnName="Balance" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
