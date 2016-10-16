@@ -1,7 +1,7 @@
 ﻿//document.onkeypress = onKeyPressed(event);
 
 function onKeyboardNumberClick(value) {
-    var screen = $("#screen")[0];
+    var screen = $("#Number")[0];
 
     if (screen.value.length === 4 || screen.value.length === 9 || screen.value.length === 14)
         screen.value += "-";
@@ -13,7 +13,7 @@ function onKeyboardNumberClick(value) {
 }
 
 function onKeyboardClearClick() {
-    var screen = $("#screen")[0];
+    var screen = $("#Number")[0];
     screen.value = "";
 }
 

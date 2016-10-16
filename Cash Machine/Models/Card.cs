@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Cash_Machine.Views.Home
+namespace Cash_Machine.Models
 {
     using System;
     using System.Collections.Generic;
@@ -17,6 +17,9 @@ namespace Cash_Machine.Views.Home
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Card()
         {
+            this.IsBlocked = false;
+            this.Balance = 0.00m;
+            this.Password = "string.Empty";
             this.CardOperation = new HashSet<CardOperation>();
         }
     
@@ -24,6 +27,7 @@ namespace Cash_Machine.Views.Home
         public bool IsBlocked { get; set; }
         public decimal Balance { get; set; }
         public string Password { get; set; }
+        public string Number { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CardOperation> CardOperation { get; set; }

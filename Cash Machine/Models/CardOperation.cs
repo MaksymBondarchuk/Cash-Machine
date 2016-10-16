@@ -7,17 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Cash_Machine.Views.Home
+namespace Cash_Machine.Models
 {
     using System;
     using System.Collections.Generic;
     
     public partial class CardOperation
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CardOperation()
+        {
+            this.Amount = 0.00m;
+        }
+    
         public System.Guid Id { get; set; }
         public System.Guid CardId { get; set; }
         public System.Guid OperationTypeId { get; set; }
         public decimal Amount { get; set; }
+        public System.DateTime CreatedOn { get; set; }
     
         public virtual Card Card { get; set; }
         public virtual OperationType OperationType { get; set; }

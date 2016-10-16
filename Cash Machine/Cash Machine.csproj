@@ -163,28 +163,28 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\Home\Card.cs">
+    <Compile Include="Models\Card.cs">
       <DependentUpon>Cash machine model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Views\Home\CardOperation.cs">
+    <Compile Include="Models\CardOperation.cs">
       <DependentUpon>Cash machine model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Views\Home\Cash machine model.Context.cs">
+    <Compile Include="Models\Cash machine model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Cash machine model.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Views\Home\Cash machine model.cs">
+    <Compile Include="Models\Cash machine model.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Cash machine model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Views\Home\Cash machine model.Designer.cs">
+    <Compile Include="Models\Cash machine model.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Cash machine model.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Home\OperationType.cs">
+    <Compile Include="Models\OperationType.cs">
       <DependentUpon>Cash machine model.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -230,13 +230,13 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Site.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\Home\Cash machine model.Context.tt">
+    <Content Include="Models\Cash machine model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Cash machine model.Context.cs</LastGenOutput>
       <DependentUpon>Cash machine model.edmx</DependentUpon>
     </Content>
-    <Content Include="Views\Home\Cash machine model.edmx.sql" />
-    <Content Include="Views\Home\Cash machine model.tt">
+    <Content Include="Models\Cash machine model.edmx.sql" />
+    <Content Include="Models\Cash machine model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Cash machine model.cs</LastGenOutput>
       <DependentUpon>Cash machine model.edmx</DependentUpon>
@@ -252,23 +252,22 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Pin.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\CardNumber.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
-    <EntityDeploy Include="Views\Home\Cash machine model.edmx">
+    <EntityDeploy Include="Models\Cash machine model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Cash machine model.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Views\Home\Cash machine model.edmx.diagram">
+    <Content Include="Models\Cash machine model.edmx.diagram">
       <DependentUpon>Cash machine model.edmx</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

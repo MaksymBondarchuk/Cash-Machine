@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/16/2016 00:47:43
+-- Date Created: 10/16/2016 17:03:46
 -- Generated from EDMX file: C:\Users\bonda\OneDrive\Work\Cash Machine\Cash Machine\Views\Home\Cash machine model.edmx
 -- --------------------------------------------------
 
@@ -47,7 +47,8 @@ CREATE TABLE [dbo].[CardSet] (
     [Id] uniqueidentifier  NOT NULL,
     [IsBlocked] bit  NOT NULL,
     [Balance] decimal(18,0)  NOT NULL,
-    [Password] nvarchar(max)  NOT NULL
+    [Password] nvarchar(max)  NOT NULL,
+    [Number] nvarchar(max)  NULL
 );
 GO
 
@@ -56,14 +57,15 @@ CREATE TABLE [dbo].[CardOperationSet] (
     [Id] uniqueidentifier  NOT NULL,
     [CardId] uniqueidentifier  NOT NULL,
     [OperationTypeId] uniqueidentifier  NOT NULL,
-    [Amount] decimal(18,0)  NOT NULL
+    [Amount] decimal(18,0)  NOT NULL,
+    [CreatedOn] datetime  NOT NULL
 );
 GO
 
 -- Creating table 'OperationTypeSet'
 CREATE TABLE [dbo].[OperationTypeSet] (
     [Id] uniqueidentifier  NOT NULL,
-    [Name] nvarchar(max)  NOT NULL
+    [Name] nvarchar(max)  NULL
 );
 GO
 

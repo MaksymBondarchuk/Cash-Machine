@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Cash_Machine.Views.Home
+namespace Cash_Machine.Models
 {
     using System;
     using System.Data.Entity;

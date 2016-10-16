@@ -23,9 +23,10 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="uniqueidentifier" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="IsBlocked" Type="bit" Nullable="false" />
-    <Property Name="Balance" Type="decimal" Nullable="false" />
-    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsBlocked" Type="bit" Nullable="false" DefaultValue="false" />
+    <Property Name="Balance" Type="decimal" Nullable="false" DefaultValue="0.00" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" DefaultValue="string.Empty" />
+    <Property Name="Number" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="CardOperationSet">
     <Key>
@@ -34,14 +35,15 @@
     <Property Name="Id" Type="uniqueidentifier" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CardId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="OperationTypeId" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="Amount" Type="decimal" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Nullable="false" DefaultValue="0.00" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="OperationTypeSet">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="uniqueidentifier" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <Association Name="CardCardOperation">
     <End Role="Card" Type="Cash_x0020_machine_x0020_model.Store.CardSet" Multiplicity="1" />
@@ -89,10 +91,11 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IsBlocked" Type="Boolean" Nullable="false" />
-          <Property Name="Balance" Type="Decimal" Nullable="false" />
+          <Property Name="IsBlocked" Type="Boolean" Nullable="false" DefaultValue="false" />
+          <Property Name="Balance" Type="Decimal" Nullable="false" ConcurrencyMode="Fixed" DefaultValue="0.00" />
           <NavigationProperty Name="CardOperation" Relationship="Cash_x0020_machine_x0020_model.CardCardOperation" FromRole="Card" ToRole="CardOperation" />
-          <Property Name="Password" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" DefaultValue="string.Empty" />
+          <Property Name="Number" Type="String" Nullable="true" />
         </EntityType>
         <EntityType Name="CardOperation">
           <Key>
@@ -103,7 +106,8 @@
           <Property Name="CardId" Type="Guid" Nullable="false" />
           <NavigationProperty Name="OperationType" Relationship="Cash_x0020_machine_x0020_model.OperationTypeCardOperation" FromRole="CardOperation" ToRole="OperationType" />
           <Property Name="OperationTypeId" Type="Guid" Nullable="false" />
-          <Property Name="Amount" Type="Decimal" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" ConcurrencyMode="Fixed" DefaultValue="0.00" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" />
         </EntityType>
         <EntityType Name="OperationType">
           <Key>
@@ -111,7 +115,7 @@
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="CardOperation" Relationship="Cash_x0020_machine_x0020_model.OperationTypeCardOperation" FromRole="OperationType" ToRole="CardOperation" />
-          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="true" />
         </EntityType>
         <Association Name="CardCardOperation">
           <End Type="Cash_x0020_machine_x0020_model.Card" Role="Card" Multiplicity="1" />
@@ -150,6 +154,7 @@
           <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
           <ScalarProperty Name="Balance" ColumnName="Balance" />
           <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -160,6 +165,7 @@
           <ScalarProperty Name="CardId" ColumnName="CardId" />
           <ScalarProperty Name="OperationTypeId" ColumnName="OperationTypeId" />
           <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -1,19 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using Cash_Machine.Models;
 
 namespace Cash_Machine.Controllers
 {
     public class HomeController : Controller
     {
+        [HttpGet]
         public ActionResult CardNumber()
+        {
+            var card = new Card();
+            return View(card);
+        }
+
+        [HttpPost]
+        public ActionResult CardNumber(Card card)
         {
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Pin()
         {
             ViewBag.Message = "Your application description page.";
 
