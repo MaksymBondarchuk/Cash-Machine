@@ -10,7 +10,7 @@
             <form class="keyboard">
                 <div id="screen" class="screen">@Html.TextBoxFor(model => model.Number)</div>
                 @*<input id="screen" class="screen" type="text" />*@
-                <label for="screen"></label><br/>
+                <label for="screen">@Html.TextBoxFor(model => model.Id)</label><br/>
                 <input class="key" type="button" value="1" onclick="onKeyboardNumberClick(value)" />
                 <input class="key" type="button" value="2" onclick="onKeyboardNumberClick(value)" />
                 <input class="key" type="button" value="3" onclick="onKeyboardNumberClick(value)" />

@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using Cash_Machine.Models;
 
 namespace Cash_Machine.Controllers
@@ -15,7 +16,14 @@ namespace Cash_Machine.Controllers
         [HttpPost]
         public ActionResult CardNumber(Card card)
         {
-            return View();
+            using (var context = new Cash_x0020_machine_x0020_modelContainer())
+            {
+                var cards = context.CardSet.Where(c => c.Number == card.Number);
+                if (!cards.Any())
+                    return HttpNotFound();
+                return Redirect("/Home/Pin");
+                //return View(cards.First());
+            }
         }
 
         public ActionResult Pin()
