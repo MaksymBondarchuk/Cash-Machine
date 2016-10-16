@@ -11,6 +11,7 @@ namespace Cash_Machine.Controllers
         public ActionResult CardNumber()
         {
             var card = new Card();
+            Session["CardId"] = null;
             return View(card);
         }
 
@@ -27,6 +28,7 @@ namespace Cash_Machine.Controllers
                         PreviousUrl = ControllerContext.RouteData.Values["action"].ToString()
                     });
                 Session["PinTries"] = -1;
+                Session["CardId"] = cards.First().Id;
                 return RedirectToAction("Pin", cards.First());
             }
         }
@@ -75,6 +77,16 @@ namespace Cash_Machine.Controllers
         }
 
         public ActionResult Operations()
+        {
+            return View();
+        }
+
+        public ActionResult Balance()
+        {
+            return View();
+        }
+
+        public ActionResult GetCash()
         {
             return View();
         }
