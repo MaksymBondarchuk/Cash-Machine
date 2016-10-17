@@ -5,14 +5,14 @@ namespace Cash_Machine.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Cash_Machine.Models.Cash_x0020_machine_x0020_modelContainer>
+    internal sealed class Configuration : DbMigrationsConfiguration<Cash_Machine.Models.CashMachineContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Cash_Machine.Models.Cash_x0020_machine_x0020_modelContainer context)
+        protected override void Seed(Cash_Machine.Models.CashMachineContext context)
         {
             //  This method will be called after migrating to the latest version.
 

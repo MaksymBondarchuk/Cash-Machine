@@ -19,7 +19,7 @@ namespace Cash_Machine.Controllers
         [HttpPost]
         public ActionResult CardNumber(Card card)
         {
-            using (var context = new Cash_x0020_machine_x0020_modelContainer())
+            using (var context = new CashMachineContext())
             {
                 var cards = context.CardSet.Where(c => !c.IsBlocked && c.Number == card.Number);
                 if (!cards.Any())
@@ -41,7 +41,7 @@ namespace Cash_Machine.Controllers
             if (triesNumber == -1)
                 return View(card);
 
-            using (var context = new Cash_x0020_machine_x0020_modelContainer())
+            using (var context = new CashMachineContext())
             {
                 var dbCard = context.CardSet.SingleOrDefault(c => c.Id == card.Id);
                 if (dbCard == null)
@@ -87,7 +87,7 @@ namespace Cash_Machine.Controllers
             var cardId = (Guid)Session["CardId"];
             if (cardId == Guid.Empty)
                 return new HttpStatusCodeResult(500);
-            using (var context = new Cash_x0020_machine_x0020_modelContainer())
+            using (var context = new CashMachineContext())
             {
                 var dbCard = context.CardSet.SingleOrDefault(c => c.Id == cardId);
                 if (dbCard == null)
