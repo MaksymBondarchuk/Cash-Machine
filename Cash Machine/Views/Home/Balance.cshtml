@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Balance";
+}
+@model Cash_Machine.Models.Card
+   
+<br/>
+ 
+<p><b>Card:</b> @Model.Number</p>
+<p><b>Date of operation:</b> @DateTime.Now</p>
+<p><b>Balance:</b> $@Model.Balance</p>
+
+<input type="button" value="Back" onclick="location.href='@Url.Action("Operations", "Home")'" />
+<input type="button" value="Exit" onclick="location.href='@Url.Action("CardNumber", "Home")'" />

@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Web.Mvc;
 using Cash_Machine.Models;
@@ -83,7 +84,27 @@ namespace Cash_Machine.Controllers
 
         public ActionResult Balance()
         {
-            return View();
+            var cardId = (Guid)Session["CardId"];
+            if (cardId == Guid.Empty)
+                return new HttpStatusCodeResult(500);
+            using (var context = new Cash_x0020_machine_x0020_modelContainer())
+            {
+                var dbCard = context.CardSet.SingleOrDefault(c => c.Id == cardId);
+                if (dbCard == null)
+                    return new HttpStatusCodeResult(500);
+                var cardOperation = new CardOperation
+                {
+                    Id = Guid.NewGuid(),
+                    CardId = cardId,
+                    OperationTypeId = Constants.OperationType.Balance,
+                    CreatedOn = DateTime.UtcNow,
+                    Balance = 0m
+                };
+                context.CardOperationSet.Add(cardOperation);
+                context.SaveChanges();
+
+                return View(dbCard);
+            }
         }
 
         public ActionResult GetCash()
