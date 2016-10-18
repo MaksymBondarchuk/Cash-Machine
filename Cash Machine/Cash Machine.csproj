@@ -162,21 +162,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201610172024528_Initial.cs" />
-    <Compile Include="Migrations\201610172024528_Initial.Designer.cs">
-      <DependentUpon>201610172024528_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610172044554_CardOperation_Id.cs" />
-    <Compile Include="Migrations\201610172044554_CardOperation_Id.Designer.cs">
-      <DependentUpon>201610172044554_CardOperation_Id.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610180609062_Test.cs" />
-    <Compile Include="Migrations\201610180609062_Test.Designer.cs">
-      <DependentUpon>201610180609062_Test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610180610349_Test1.cs" />
-    <Compile Include="Migrations\201610180610349_Test1.Designer.cs">
-      <DependentUpon>201610180610349_Test1.cs</DependentUpon>
+    <Compile Include="Migrations\201610181811003_CardCreation.cs" />
+    <Compile Include="Migrations\201610181811003_CardCreation.Designer.cs">
+      <DependentUpon>201610181811003_CardCreation.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Card.cs" />
@@ -266,17 +254,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201610172024528_Initial.resx">
-      <DependentUpon>201610172024528_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610172044554_CardOperation_Id.resx">
-      <DependentUpon>201610172044554_CardOperation_Id.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610180609062_Test.resx">
-      <DependentUpon>201610180609062_Test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610180610349_Test1.resx">
-      <DependentUpon>201610180610349_Test1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201610181811003_CardCreation.resx">
+      <DependentUpon>201610181811003_CardCreation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

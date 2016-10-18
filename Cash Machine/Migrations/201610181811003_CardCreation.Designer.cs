@@ -7,13 +7,13 @@ namespace Cash_Machine.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Initial : IMigrationMetadata
+    public sealed partial class CardCreation : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CardCreation));
         
         string IMigrationMetadata.Id
         {
-            get { return "201610172024528_Initial"; }
+            get { return "201610181811003_CardCreation"; }
         }
         
         string IMigrationMetadata.Source
