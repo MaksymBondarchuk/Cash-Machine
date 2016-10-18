@@ -5,18 +5,22 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cash_Machine.Models
 {
-    public class OperationType
+    public class Test
     {
-        public OperationType()
+        public Test()
         {
-            //CardOperation = new HashSet<CardOperation>();
+            Name = "Test";
         }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
+
         public string Name { get; set; }
 
-        //public virtual ICollection<CardOperation> CardOperation { get; set; }
+        public Guid ForeignTestId { get; set; }
+
+        //[ForeignKey("ForeignTestId")]
+        public ForeignTest ForeignTest { get; set; }
     }
 }

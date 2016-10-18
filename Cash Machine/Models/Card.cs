@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cash_Machine.Models
 {
@@ -12,6 +14,8 @@ namespace Cash_Machine.Models
             CardOperation = new HashSet<CardOperation>();
         }
 
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public bool IsBlocked { get; set; }
         public decimal Balance { get; set; }

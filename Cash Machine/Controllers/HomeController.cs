@@ -12,6 +12,28 @@ namespace Cash_Machine.Controllers
         public ActionResult CardNumber()
         {
             var card = new Card();
+            using (var context = new CashMachineContext())
+            {
+                var foreignTest = new ForeignTest();
+                context.ForeignTests.Add(foreignTest);
+                context.SaveChanges();
+
+                var test = new Test
+                {
+                    ForeignTestId = foreignTest.Id
+                };
+                context.Tests.Add(test);
+                context.SaveChanges();
+
+                //var ot = new OperationType();
+                //context.OperationTypes.Add(ot);
+                //context.SaveChanges();
+
+                //var card1 = new Card();
+                //context.Cards.Add(card1);
+                //context.SaveChanges();
+            }
+            
             Session["CardId"] = null;
             return View(card);
         }
@@ -21,7 +43,7 @@ namespace Cash_Machine.Controllers
         {
             using (var context = new CashMachineContext())
             {
-                var cards = context.CardSet.Where(c => !c.IsBlocked && c.Number == card.Number);
+                var cards = context.Cards.Where(c => !c.IsBlocked && c.Number == card.Number);
                 if (!cards.Any())
                     return RedirectToAction("Error", new Error
                     {
@@ -43,7 +65,7 @@ namespace Cash_Machine.Controllers
 
             using (var context = new CashMachineContext())
             {
-                var dbCard = context.CardSet.SingleOrDefault(c => c.Id == card.Id);
+                var dbCard = context.Cards.SingleOrDefault(c => c.Id == card.Id);
                 if (dbCard == null)
                     return new HttpStatusCodeResult(500);
 
@@ -89,18 +111,16 @@ namespace Cash_Machine.Controllers
                 return new HttpStatusCodeResult(500);
             using (var context = new CashMachineContext())
             {
-                var dbCard = context.CardSet.SingleOrDefault(c => c.Id == cardId);
+                var dbCard = context.Cards.SingleOrDefault(c => c.Id == cardId);
                 if (dbCard == null)
                     return new HttpStatusCodeResult(500);
                 var cardOperation = new CardOperation
                 {
-                    Id = Guid.NewGuid(),
                     CardId = cardId,
                     OperationTypeId = Constants.OperationType.Balance,
-                    CreatedOn = DateTime.UtcNow,
                     Balance = 0m
                 };
-                context.CardOperationSet.Add(cardOperation);
+                context.CardOperations.Add(cardOperation);
                 context.SaveChanges();
 
                 return View(dbCard);

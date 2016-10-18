@@ -4,8 +4,10 @@
 
     public class CashMachineContext : DbContext
     {
-        public virtual DbSet<Card> CardSet { get; set; }
-        public virtual DbSet<CardOperation> CardOperationSet { get; set; }
-        public virtual DbSet<OperationType> OperationTypeSet { get; set; }
+        public virtual DbSet<Card> Cards { get; set; }
+        public virtual DbSet<CardOperation> CardOperations { get; set; }
+        public virtual DbSet<OperationType> OperationTypes { get; set; }
+        public virtual DbSet<Test> Tests { get; set; }
+        public virtual DbSet<ForeignTest> ForeignTests { get; set; }
     }
 }
