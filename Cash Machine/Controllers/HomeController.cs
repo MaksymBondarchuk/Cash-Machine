@@ -92,13 +92,13 @@ namespace Cash_Machine.Controllers
                 var dbCard = context.Cards.SingleOrDefault(c => c.Id == cardId);
                 if (dbCard == null)
                     return new HttpStatusCodeResult(500);
-                //var cardOperation = new CardOperation
-                //{
-                //    CardId = cardId,
-                //    OperationTypeId = Constants.OperationType.Balance,
-                //    Balance = 0m
-                //};
-                //context.CardOperations.Add(cardOperation);
+                var cardOperation = new CardOperation
+                {
+                    CardId = cardId,
+                    OperationTypeId = Constants.OperationType.Balance,
+                    Balance = 0m
+                };
+                context.CardOperations.Add(cardOperation);
                 context.SaveChanges();
 
                 return View(dbCard);
