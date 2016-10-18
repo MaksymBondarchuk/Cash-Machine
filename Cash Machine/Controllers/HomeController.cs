@@ -130,14 +130,19 @@ namespace Cash_Machine.Controllers
             var cardId = (Guid)cardIdObject;
             using (var context = new CashMachineContext())
             {
-                var cards = context.Cards.Where(c => c.Id == cardId && c.Balance < requestedAmount);
-                if (!cards.Any())
+                var card = context.Cards.SingleOrDefault(c => c.Id == cardId);
+                if (card == null)
+                    return new HttpStatusCodeResult(500);
+                if (card.Balance < requestedAmount)
                     return RedirectToAction("Error", new Error
                     {
                         Description = $"Balance on your card is less then {requestedAmount}",
                         PreviousUrl = ControllerContext.RouteData.Values["action"].ToString()
                     });
-                return RedirectToAction("Operations", cards.First());
+                card.Balance -= requestedAmount;
+                context.SaveChanges();
+
+                return RedirectToAction("Operations", card);
             }
         }
     }
