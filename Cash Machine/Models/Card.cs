@@ -7,10 +7,6 @@ namespace Cash_Machine.Models
 {
     public class Card
     {
-        public Card()
-        {
-        }
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }

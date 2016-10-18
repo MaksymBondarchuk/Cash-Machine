@@ -170,6 +170,14 @@
     <Compile Include="Migrations\201610181851054_OperationType.Designer.cs">
       <DependentUpon>201610181851054_OperationType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610181901151_CardOperation.cs" />
+    <Compile Include="Migrations\201610181901151_CardOperation.Designer.cs">
+      <DependentUpon>201610181901151_CardOperation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610181907172_CardOperation1.cs" />
+    <Compile Include="Migrations\201610181907172_CardOperation1.Designer.cs">
+      <DependentUpon>201610181907172_CardOperation1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="Models\CardOperation.cs" />
@@ -263,6 +271,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610181851054_OperationType.resx">
       <DependentUpon>201610181851054_OperationType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610181901151_CardOperation.resx">
+      <DependentUpon>201610181901151_CardOperation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610181907172_CardOperation1.resx">
+      <DependentUpon>201610181907172_CardOperation1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
