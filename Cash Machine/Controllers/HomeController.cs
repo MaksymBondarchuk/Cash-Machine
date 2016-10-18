@@ -12,34 +12,6 @@ namespace Cash_Machine.Controllers
         public ActionResult CardNumber()
         {
             var card = new Card();
-            using (var context = new CashMachineContext())
-            {
-                var operationType = new OperationType
-                {
-                    Name = "Get cash"
-                };
-                context.OperationTypes.Add(operationType);
-                card = new Card();
-                context.Cards.Add(card);
-                context.SaveChanges();
-
-                var cardOperation = new CardOperation
-                {
-                    CardId = card.Id,
-                    OperationTypeId = operationType.Id
-                };
-                context.CardOperations.Add(cardOperation);
-                context.SaveChanges();
-
-                //var ot = new OperationType();
-                //context.OperationTypes.Add(ot);
-                //context.SaveChanges();
-
-                //var card1 = new Card();
-                //context.Cards.Add(card1);
-                //context.SaveChanges();
-            }
-
             Session["CardId"] = null;
             return View(card);
         }

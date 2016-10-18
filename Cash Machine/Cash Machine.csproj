@@ -178,6 +178,10 @@
     <Compile Include="Migrations\201610181907172_CardOperation1.Designer.cs">
       <DependentUpon>201610181907172_CardOperation1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610181911358_NewDatabase.cs" />
+    <Compile Include="Migrations\201610181911358_NewDatabase.Designer.cs">
+      <DependentUpon>201610181911358_NewDatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="Models\CardOperation.cs" />
@@ -185,8 +189,6 @@
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\Error.cs" />
     <Compile Include="Models\OperationType.cs" />
-    <Compile Include="Models\Test.cs" />
-    <Compile Include="Models\ForeignTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -277,6 +279,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610181907172_CardOperation1.resx">
       <DependentUpon>201610181907172_CardOperation1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610181911358_NewDatabase.resx">
+      <DependentUpon>201610181911358_NewDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
