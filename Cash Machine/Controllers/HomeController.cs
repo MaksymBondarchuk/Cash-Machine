@@ -24,7 +24,11 @@ namespace Cash_Machine.Controllers
                 };
                 context.Tests.Add(test);
 
-
+                var operationType = new OperationType
+                {
+                    Name = "Balance"
+                };
+                context.OperationTypes.Add(operationType);
                 card = new Card();
                 context.Cards.Add(card);
                 context.SaveChanges();
@@ -37,7 +41,7 @@ namespace Cash_Machine.Controllers
                 //context.Cards.Add(card1);
                 //context.SaveChanges();
             }
-            
+
             Session["CardId"] = null;
             return View(card);
         }
