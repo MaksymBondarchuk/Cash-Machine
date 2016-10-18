@@ -105,9 +105,40 @@ namespace Cash_Machine.Controllers
             }
         }
 
+        [HttpGet]
         public ActionResult GetCash()
         {
-            return View();
+            var cardIdObject = Session["CardId"];
+            if (cardIdObject == null)
+                return new HttpStatusCodeResult(500);
+            var cardId = (Guid)cardIdObject;
+            using (var context = new CashMachineContext())
+            {
+                var dbCard = context.Cards.SingleOrDefault(c => c.Id == cardId);
+                if (dbCard == null)
+                    return new HttpStatusCodeResult(500);
+                return View(dbCard);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetCash(decimal requestedAmount)
+        {
+            var cardIdObject = Session["CardId"];
+            if (cardIdObject == null)
+                return new HttpStatusCodeResult(500);
+            var cardId = (Guid)cardIdObject;
+            using (var context = new CashMachineContext())
+            {
+                var cards = context.Cards.Where(c => c.Id == cardId && c.Balance < requestedAmount);
+                if (!cards.Any())
+                    return RedirectToAction("Error", new Error
+                    {
+                        Description = $"Balance on your card is less then {requestedAmount}",
+                        PreviousUrl = ControllerContext.RouteData.Values["action"].ToString()
+                    });
+                return RedirectToAction("Operations", cards.First());
+            }
         }
     }
 }

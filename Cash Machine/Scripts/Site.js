@@ -5,8 +5,11 @@ function onKeyboardNumberClick(value) {
 
     if (!screen) {
         screen = $("#Password")[0];
-        if (!screen)
+        if (!screen) {
+            screen = $("#requestedAmount")[0];
+            screen.value += value;
             return;
+        }
         screen.value += value;
         checkSubmitLength(screen.value, 4);
         return;
@@ -27,7 +30,12 @@ function checkSubmitLength(value, length) {
 
 function onKeyboardClearClick() {
     var screen = $("#Number")[0];
-    screen.value = "";
+    if (!screen)
+        screen = $("#Password")[0];
+    if (!screen)
+        screen = $("#Balance")[0];
+    if (screen)
+        screen.value = "";
 }
 
 function onKeyPressed(event) {
