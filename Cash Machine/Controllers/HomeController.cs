@@ -140,9 +140,30 @@ namespace Cash_Machine.Controllers
                         PreviousUrl = ControllerContext.RouteData.Values["action"].ToString()
                     });
                 card.Balance -= requestedAmount;
+
+                var cardOperation = new CardOperation
+                {
+                    CardId = cardId,
+                    OperationTypeId = Constants.OperationType.GetCash,
+                    Amount = requestedAmount,
+                    Balance = card.Balance
+                };
+                context.CardOperations.Add(cardOperation);
+
                 context.SaveChanges();
 
-                return RedirectToAction("Operations", card);
+                return RedirectToAction("OperationResult", cardOperation);
+            }
+        }
+
+        public ActionResult OperationResult(CardOperation cardOperation)
+        {
+            using (var context = new CashMachineContext())
+            {
+                var card = context.Cards.SingleOrDefault(c => c.Id == cardOperation.CardId);
+                if (card == null)
+                    return new HttpStatusCodeResult(500);
+                return View(new Tuple<CardOperation, string>(cardOperation, card.Number));
             }
         }
     }

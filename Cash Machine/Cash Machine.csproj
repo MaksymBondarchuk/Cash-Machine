@@ -254,6 +254,7 @@
     <Content Include="Views\Home\Operations.cshtml" />
     <Content Include="Views\Home\Balance.cshtml" />
     <Content Include="Views\Home\GetCash.cshtml" />
+    <Content Include="Views\Home\OperationResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

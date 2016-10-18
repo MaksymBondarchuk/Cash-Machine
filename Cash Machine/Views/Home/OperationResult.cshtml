@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Operation result";
+}
+@model Tuple<Cash_Machine.Models.CardOperation, string>
+
+<br />
+
+<p><b>Card:</b> @Model.Item2</p>
+<p><b>Date of operation:</b> @Model.Item1.Date.ToLocalTime()</p>
+<p><b>Taken money:</b> $@Model.Item1.Amount</p>
+<p><b>Balance:</b> $@Model.Item1.Balance</p>
+
+<input type="button" value="Back" onclick="location.href='@Url.Action("Operations", "Home")'" />
+<input type="button" value="Exit" onclick="location.href='@Url.Action("CardNumber", "Home")'" />
