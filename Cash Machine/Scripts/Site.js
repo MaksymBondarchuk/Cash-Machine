@@ -1,17 +1,20 @@
 ﻿//document.onkeypress = onKeyPressed(event);
 
 function onKeyboardNumberClick(value) {
-    var screen = $("#Number")[0];
+    var id = "Number";
+    var screen = $("#" + id)[0];
 
     if (!screen) {
-        screen = $("#Password")[0];
+        id = "Password";
+        screen = $("#" + id)[0];
         if (!screen) {
-            screen = $("#requestedAmount")[0];
+            id = "requestedAmount";
+            screen = $("#" + id)[0];
             screen.value += value;
             return;
         }
         screen.value += value;
-        checkSubmitLength(screen.value, 4);
+        checkSubmitLength(id, screen.value, 4);
         return;
     }
 
@@ -20,12 +23,15 @@ function onKeyboardNumberClick(value) {
 
     screen.value += value;
 
-    checkSubmitLength(screen.value, 19);
+    checkSubmitLength(id, screen.value, 19);
 }
 
-function checkSubmitLength(value, length) {
-    if (value.length === length)
+function checkSubmitLength(id, value, length) {
+    var screen = $("#" + id)[0];
+    if (value.length === length) {
+        screen.value = window.btoa(value);
         $("#Ok")[0].click();
+    }
 }
 
 function onKeyboardClearClick() {

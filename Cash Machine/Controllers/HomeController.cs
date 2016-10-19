@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Web.Mvc;
 using Cash_Machine.Models;
 
@@ -8,6 +9,12 @@ namespace Cash_Machine.Controllers
 {
     public class HomeController : Controller
     {
+        private static string Decode(string encodedString)
+        {
+            var data = Convert.FromBase64String(encodedString);
+            return Encoding.UTF8.GetString(data);
+        }
+
         [HttpGet]
         public ActionResult CardNumber()
         {
@@ -17,39 +24,48 @@ namespace Cash_Machine.Controllers
         }
 
         [HttpPost]
-        public ActionResult CardNumber(Card card)
+        public ActionResult CardNumber(string number)
         {
+            number = Decode(number);
             using (var context = new CashMachineContext())
             {
-                var cards = context.Cards.Where(c => !c.IsBlocked && c.Number == card.Number);
+                var cards = context.Cards.Where(c => !c.IsBlocked && c.Number == number);
                 if (!cards.Any())
                     return RedirectToAction("Error", new Error
                     {
-                        Description = $"Card with number \"{card.Number}\" doesn't exist or blocked",
+                        Description = $"Card with number \"{number}\" doesn't exist or blocked",
                         PreviousUrl = ControllerContext.RouteData.Values["action"].ToString()
                     });
-                Session["PinTries"] = -1;
                 Session["CardId"] = cards.First().Id;
-                return RedirectToAction("Pin", cards.First());
+                Session["PinTries"] = 1;
+                return RedirectToAction("Pin");
             }
         }
 
-        public ActionResult Pin(Card card)
+        [HttpGet]
+        public ActionResult Pin()
         {
-            var triesNumber = (int)Session["PinTries"];
-            Session["PinTries"] = triesNumber + 1;
-            if (triesNumber == -1)
-                return View(card);
+            var card = new Card();
+            return View(card);
+        }
 
+        [HttpPost]
+        public ActionResult Pin(string password)
+        {
+            var cardIdObject = Session["CardId"];
+            if (cardIdObject == null)
+                return new HttpStatusCodeResult(500);
+            var cardId = (Guid)cardIdObject;
             using (var context = new CashMachineContext())
             {
-                var dbCard = context.Cards.SingleOrDefault(c => c.Id == card.Id);
+                var dbCard = context.Cards.SingleOrDefault(c => c.Id == cardId);
                 if (dbCard == null)
                     return new HttpStatusCodeResult(500);
 
-                if (card.Password == dbCard.Password)
+                if (password == dbCard.Password)
                     return RedirectToAction("Operations");
 
+                var triesNumber = (int)Session["PinTries"];
                 if (triesNumber == 4)
                 {
                     dbCard.IsBlocked = true;
@@ -62,7 +78,11 @@ namespace Cash_Machine.Controllers
                     });
                 }
                 Session["PinTries"] = triesNumber + 1;
-                return View(card);
+                return RedirectToAction("Error", new Error
+                {
+                    Description = "You entered wrong PIN",
+                    PreviousUrl = "Pin"
+                });
             }
         }
 
@@ -84,9 +104,10 @@ namespace Cash_Machine.Controllers
 
         public ActionResult Balance()
         {
-            var cardId = (Guid)Session["CardId"];
-            if (cardId == Guid.Empty)
+            var cardIdObject = Session["CardId"];
+            if (cardIdObject == null)
                 return new HttpStatusCodeResult(500);
+            var cardId = (Guid)cardIdObject;
             using (var context = new CashMachineContext())
             {
                 var dbCard = context.Cards.SingleOrDefault(c => c.Id == cardId);

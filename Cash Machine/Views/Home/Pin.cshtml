@@ -6,7 +6,7 @@
 <div class="row">
     <div class="keyboard">
         @using (Html.BeginForm("Pin", "Home", FormMethod.Post))
-            {
+        {
             <form class="keyboard">
                 <div id="screen" class="screen">@Html.PasswordFor(model => model.Password)</div>
                 <input class="key" type="button" value="1" onclick="onKeyboardNumberClick(value)" />
