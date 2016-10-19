@@ -5,7 +5,7 @@
 <div class="row">
     <div class="keyboard">
         @using (Html.BeginForm("GetCash", "Home", FormMethod.Post))
-            {
+        {
             <form class="keyboard">
                 <div id="screen" class="screen">@Html.TextBox("requestedAmount")</div>
                 <input class="key" type="button" value="1" onclick="onKeyboardNumberClick(value)" />
@@ -25,4 +25,4 @@
     </div>
 </div>
 
-<input type="button" value="Exit" onclick="location.href='@Url.Action("CardNumber", "Home")'" />
+<input type="button" class="btn btn-danger" value="Exit" onclick="location.href='@Url.Action("CardNumber", "Home")'" />

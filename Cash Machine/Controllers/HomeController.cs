@@ -157,7 +157,7 @@ namespace Cash_Machine.Controllers
                 if (card.Balance < requestedAmount)
                     return RedirectToAction("Error", new Error
                     {
-                        Description = $"Balance on your card is less then {requestedAmount}",
+                        Description = $"Your card balance is less then {requestedAmount}",
                         PreviousUrl = ControllerContext.RouteData.Values["action"].ToString()
                     });
                 card.Balance -= requestedAmount;

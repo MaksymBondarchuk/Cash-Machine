@@ -29,6 +29,7 @@ function onKeyboardNumberClick(value) {
 function checkSubmitLength(id, value, length) {
     var screen = $("#" + id)[0];
     if (value.length === length) {
+        screen.style.color = "white";   // User won't see encrypted password
         screen.value = window.btoa(value);
         $("#Ok")[0].click();
     }
@@ -39,7 +40,7 @@ function onKeyboardClearClick() {
     if (!screen)
         screen = $("#Password")[0];
     if (!screen)
-        screen = $("#Balance")[0];
+        screen = $("#requestedAmount")[0];
     if (screen)
         screen.value = "";
 }

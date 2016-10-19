@@ -46,21 +46,22 @@ textarea {
     font-size: 16px;
     background-color: white;
     color: black;
-    border: 2px dashed #555555;
+    border: 2px dashed black;
     -webkit-transition-duration: 0.4s; /* Safari */
     /*transition-duration: 0.4s;*/
     outline: 0;
 }
 
     .key:hover {
-        background-color: #555555;
+        background-color: black;
         color: white;
     }
 
     .key:active {
-        background-color: #008CBA;
-        color: white;
-        border: 0;
+        /*background-color: #008CBA;*/
+        background-color: white;
+        color: black;
+        border: 2px solid black;
     }
 
 .screen {
