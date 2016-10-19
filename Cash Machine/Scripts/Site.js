@@ -5,7 +5,7 @@ function onKeyboardNumberClick(value) {
     var screen = $("#" + id)[0];
 
     if (!screen) {
-        id = "Password";
+        id = "Pin";
         screen = $("#" + id)[0];
         if (!screen) {
             id = "requestedAmount";
@@ -38,7 +38,7 @@ function checkSubmitLength(id, value, length) {
 function onKeyboardClearClick() {
     var screen = $("#Number")[0];
     if (!screen)
-        screen = $("#Password")[0];
+        screen = $("#Pin")[0];
     if (!screen)
         screen = $("#requestedAmount")[0];
     if (screen)

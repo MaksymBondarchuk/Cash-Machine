@@ -182,6 +182,10 @@
     <Compile Include="Migrations\201610181911358_NewDatabase.Designer.cs">
       <DependentUpon>201610181911358_NewDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610192048092_Pin.cs" />
+    <Compile Include="Migrations\201610192048092_Pin.Designer.cs">
+      <DependentUpon>201610192048092_Pin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="Models\CardOperation.cs" />
@@ -283,6 +287,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610181911358_NewDatabase.resx">
       <DependentUpon>201610181911358_NewDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610192048092_Pin.resx">
+      <DependentUpon>201610192048092_Pin.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

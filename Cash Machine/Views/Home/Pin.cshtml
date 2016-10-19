@@ -8,7 +8,7 @@
         @using (Html.BeginForm("Pin", "Home", FormMethod.Post))
         {
             <form class="keyboard">
-                <div id="screen" class="screen">@Html.PasswordFor(model => model.Password)</div>
+                <div id="screen" class="screen">@Html.PasswordFor(model => model.Pin)</div>
                 <input class="key" type="button" value="1" onclick="onKeyboardNumberClick(value)" />
                 <input class="key" type="button" value="2" onclick="onKeyboardNumberClick(value)" />
                 <input class="key" type="button" value="3" onclick="onKeyboardNumberClick(value)" />

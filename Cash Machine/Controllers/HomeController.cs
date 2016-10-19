@@ -50,7 +50,7 @@ namespace Cash_Machine.Controllers
         }
 
         [HttpPost]
-        public ActionResult Pin(string password)
+        public ActionResult Pin(string pin)
         {
             var cardIdObject = Session["CardId"];
             if (cardIdObject == null)
@@ -62,7 +62,7 @@ namespace Cash_Machine.Controllers
                 if (dbCard == null)
                     return new HttpStatusCodeResult(500);
 
-                if (password == dbCard.Password)
+                if (pin == dbCard.Pin)
                     return RedirectToAction("Operations");
 
                 var triesNumber = (int)Session["PinTries"];
