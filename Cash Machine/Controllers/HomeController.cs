@@ -143,8 +143,10 @@ namespace Cash_Machine.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetCash(decimal requestedAmount)
+        public ActionResult GetCash(string requestedAmount)
         {
+            requestedAmount = Decode(requestedAmount);
+            var decimalAmount = Convert.ToDecimal(requestedAmount);
             var cardIdObject = Session["CardId"];
             if (cardIdObject == null)
                 return new HttpStatusCodeResult(500);
@@ -154,19 +156,19 @@ namespace Cash_Machine.Controllers
                 var card = context.Cards.SingleOrDefault(c => c.Id == cardId);
                 if (card == null)
                     return new HttpStatusCodeResult(500);
-                if (card.Balance < requestedAmount)
+                if (card.Balance < decimalAmount)
                     return RedirectToAction("Error", new Error
                     {
-                        Description = $"Your card balance is less then {requestedAmount}",
+                        Description = $"Your card balance is less then {decimalAmount}",
                         PreviousUrl = ControllerContext.RouteData.Values["action"].ToString()
                     });
-                card.Balance -= requestedAmount;
+                card.Balance -= decimalAmount;
 
                 var cardOperation = new CardOperation
                 {
                     CardId = cardId,
                     OperationTypeId = Constants.OperationType.GetCash,
-                    Amount = requestedAmount,
+                    Amount = decimalAmount,
                     Balance = card.Balance
                 };
                 context.CardOperations.Add(cardOperation);
